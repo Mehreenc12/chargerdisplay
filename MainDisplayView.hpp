@@ -25,6 +25,9 @@ public:
     double timeleft;
     int32_t power;
 
+    double hvsoc_shift;
+    double power_shift;
+
     MainDisplayView();
     virtual ~MainDisplayView() {}
     virtual void setupScreen();
