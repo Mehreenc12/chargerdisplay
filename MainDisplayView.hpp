@@ -21,8 +21,8 @@ public:
     int16_t curr_prov;
     uint16_t hvsoc;
     uint8_t max_temp;
-
-
+    uint16_t timeleft;
+    int32_t power;
 
     MainDisplayView();
     virtual ~MainDisplayView() {}
