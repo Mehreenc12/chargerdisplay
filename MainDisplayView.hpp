@@ -4,6 +4,7 @@
 #include <gui_generated/maindisplay_screen/MainDisplayViewBase.hpp>
 #include <gui/maindisplay_screen/MainDisplayPresenter.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+#include <stdlib.h>
 
 #include <fdcan.h>
 
