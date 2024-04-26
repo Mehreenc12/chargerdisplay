@@ -27,6 +27,7 @@ public:
 
     double hvsoc_shift;
     double power_shift;
+    int timeInMins;
 
     MainDisplayView();
     virtual ~MainDisplayView() {}
