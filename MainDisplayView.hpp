@@ -22,7 +22,7 @@ public:
     int16_t curr_prov;
     uint16_t hvsoc;
     uint8_t max_temp;
-    uint32_t timeleft;
+    double timeleft;
     int32_t power;
 
     MainDisplayView();
