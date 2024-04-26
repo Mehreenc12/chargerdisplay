@@ -20,6 +20,7 @@ void MainDisplayView::tearDownScreen()
 }
 
 void MainDisplayView::updateCharge(){
+	
 
     while(HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &RxHeader, RxData)==HAL_OK){
         id = RxHeader.Identifier;
@@ -35,7 +36,10 @@ void MainDisplayView::updateCharge(){
 		  hvsoc = (uint16_t)((RxData[4] << 8) + RxData[5]);
 		  max_temp = (uint8_t)RxData[6];
 		}
-	    	timeleft = abs(3.8 * (1-hvsoc) / power); //assuming time is in minutes
+	    	hvsoc_shift = (double) hvsoc/100;
+	    	power_shift = (double) abs(power)/100;
+	    	timeleft = 6.8 * (1-hvsoc_shift) / power_shift; //time is in hours
+	    	timeInMins = (int) (timeleft*60.0);
 
 
 	    
@@ -1215,6 +1219,167 @@ void MainDisplayView::updateCharge(){
 
 
 
+
+
+
+	    	    //time remaining
+
+	    	switch((timeInMins%60) % 10) {
+	    case 0:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_0));
+	        break;
+	    case 1:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_1));
+	        break;
+	    case 2:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_2));
+	        break;
+	    case 3:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_3));
+	        break;
+	    case 4:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_4));
+	        break;
+	    case 5:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_5));
+	        break;
+	    case 6:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_6));
+	        break;
+	    case 7:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_7));
+	        break;
+	    case 8:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_8));
+	        break;
+	    case 9:
+	       timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_9));
+	        break;
+             default:
+	        timedig_3.setTypedText(touchgfx::TypedText(T_TEXT_ERROR));
+		break;
+	     }
+		timedig_3.invalidate();
+
+
+
+	    	switch((timeInMins%60) / 10) {
+	    case 0:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_0));
+	        break;
+	    case 1:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_1));
+	        break;
+	    case 2:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_2));
+	        break;
+	    case 3:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_3));
+	        break;
+	    case 4:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_4));
+	        break;
+	    case 5:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_5));
+	        break;
+	    case 6:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_6));
+	        break;
+	    case 7:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_7));
+	        break;
+	    case 8:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_8));
+	        break;
+	    case 9:
+	       timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_9));
+	        break;
+             default:
+	        timedig_2.setTypedText(touchgfx::TypedText(T_TEXT_ERROR));
+		break;
+	     }
+		timedig_2.invalidate();
+
+
+	    
+	    	switch((timeInMins/60) % 10) {
+	    case 0:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_0));
+	        break;
+	    case 1:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_1));
+	        break;
+	    case 2:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_2));
+	        break;
+	    case 3:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_3));
+	        break;
+	    case 4:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_4));
+	        break;
+	    case 5:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_5));
+	        break;
+	    case 6:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_6));
+	        break;
+	    case 7:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_7));
+	        break;
+	    case 8:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_8));
+	        break;
+	    case 9:
+	       timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_9));
+	        break;
+             default:
+	        timedig_1.setTypedText(touchgfx::TypedText(T_TEXT_ERROR));
+		break;
+	     }
+		timedig_1.invalidate();
+
+
+
+
+	    	switch((timeInMins/60) / 10) {
+	    case 0:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_0));
+	        break;
+	    case 1:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_1));
+	        break;
+	    case 2:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_2));
+	        break;
+	    case 3:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_3));
+	        break;
+	    case 4:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_4));
+	        break;
+	    case 5:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_5));
+	        break;
+	    case 6:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_6));
+	        break;
+	    case 7:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_7));
+	        break;
+	    case 8:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_8));
+	        break;
+	    case 9:
+	       timedig.setTypedText(touchgfx::TypedText(T_TEXT_9));
+	        break;
+             default:
+	        timedig.setTypedText(touchgfx::TypedText(T_TEXT_ERROR));
+		break;
+	     }
+		timedig.invalidate();
+
+	    
 	    
 
 
